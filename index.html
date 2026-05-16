@@ -83,11 +83,12 @@
   }
 
   .phone select{
-    width:120px;
+    width:50px;
   }
 
   .phone input{
     flex:1;
+    min-width:0;
   }
 
   .submit{
@@ -111,12 +112,6 @@
     font-size:11px;
     margin-top:10px;
     opacity:0.8;
-  }
-
-  .full-width{
-  width:100%;
-  margin-top:20px;
-  flex-basis:100%;
   }
 </style>
 </head>
@@ -151,12 +146,7 @@
       <label>Instagram Pengantin</label>
       <input type="text" name="ig_pengantin">
 
-
-
-    </div>
-
-        <div class="full-width">
-            <label>Nomor WhatsApp</label>
+      <label>Nomor WhatsApp</label>
       <div class="phone">
 
         <!-- COUNTRY CODE FIX -->
@@ -171,7 +161,8 @@
         <input type="text" name="whatsapp" placeholder="8123456789">
 
       </div>
-    </div> 
+
+    </div>
 
     <!-- RIGHT -->
     <div class="col">
@@ -191,7 +182,6 @@
 
     </div>
 
-   
   </form>
 </div>
 <script>
