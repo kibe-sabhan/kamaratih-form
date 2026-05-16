@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kamaratih Form</title>
+
+<style>
+  body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#5a0f1a;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+  }
+
+  .container{
+    width:900px;
+    background:#6a1320;
+    padding:40px;
+    border-radius:20px;
+    color:white;
+  }
+
+  h1{
+    text-align:center;
+    margin:0;
+  }
+
+  h2{
+    text-align:center;
+    margin-top:5px;
+    font-weight:normal;
+    font-size:14px;
+    opacity:0.8;
+  }
+
+  form{
+    display:flex;
+    gap:40px;
+    margin-top:30px;
+  }
+
+  .col{
+    flex:1;
+  }
+
+  label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:5px;
+    font-size:14px;
+  }
+
+  .hint{
+    font-size:11px;
+    opacity:0.7;
+  }
+
+  input, select{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    margin-bottom:10px;
+    outline:none;
+  }
+
+  .row{
+    display:flex;
+    gap:10px;
+  }
+
+  .row input{
+    flex:1;
+  }
+
+  .phone{
+    display:flex;
+    gap:10px;
+  }
+
+  .phone select{
+    width:120px;
+  }
+
+  .phone input{
+    flex:1;
+  }
+
+  .submit{
+    margin-top:20px;
+    padding:15px;
+    width:100%;
+    border:2px solid white;
+    background:transparent;
+    color:white;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+  }
+
+  .submit:hover{
+    background:white;
+    color:#6a1320;
+  }
+
+  .note{
+    font-size:11px;
+    margin-top:10px;
+    opacity:0.8;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Kamaratih</h1>
+  <h2>wedding content creator</h2>
+
+  <form id="bookingForm">
+
+    <!-- LEFT -->
+    <div class="col">
+
+      <label>Nama <div class="hint">(Gunakan nama lengkap)</div></label>
+      <input type="text" name="nama">
+
+      <label>Nama Panggilan Pengantin</label>
+      <div class="row">
+        <input type="text" name="panggilan_pria">
+        <input type="text" name="panggilan_wanita">
+      </div>
+
+      <label>Tanggal Acara</label>
+      <input type="date" name="tanggal">
+
+      <label>Jam Acara</label>
+      <input type="time" name="jam">
+
+      <label>Instagram Pengantin</label>
+      <input type="text" name="ig_pengantin">
+
+      <label>Nomor WhatsApp</label>
+      <div class="phone">
+
+        <!-- COUNTRY CODE FIX -->
+        <select name="country_code">
+          <option value="+62">🇮🇩 +62 (Indonesia)</option>
+          <option value="+1">🇺🇸 +1 (USA)</option>
+          <option value="+44">🇬🇧 +44 (UK)</option>
+          <option value="+81">🇯🇵 +81 (Japan)</option>
+          <option value="+86">🇨🇳 +86 (China)</option>
+        </select>
+
+        <input type="text" name="whatsapp" placeholder="8123456789">
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="col">
+
+      <label>Tambahan <div class="hint">(cth: video trend, recap)</div></label>
+      <input type="text" name="tambahan">
+
+      <label>Lokasi Acara</label>
+      <input type="text" name="lokasi">
+
+      <label>IG Vendor <div class="hint">MUA, FG, VG, Dekorasi</div></label>
+      <input type="text" name="ig_vendor">
+
+      <button class="submit" type="submit">submit</button>
+
+      <div class="note">Klik untuk invoice and payment</div>
+
+    </div>
+
+  </form>
+</div>
+<script>
+document.getElementById("bookingForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+
+  const data = {
+    nama: document.querySelector("[name='nama']").value,
+    panggilan_pria: document.querySelector("[name='panggilan_pria']").value,
+    panggilan_wanita: document.querySelector("[name='panggilan_wanita']").value,
+    tanggal: document.querySelector("[name='tanggal']").value,
+    jam: document.querySelector("[name='jam']").value,
+    ig_pengantin: document.querySelector("[name='ig_pengantin']").value,
+    country_code: document.querySelector("[name='country_code']").value,
+    whatsapp: document.querySelector("[name='whatsapp']").value,
+    tambahan: document.querySelector("[name='tambahan']").value,
+    lokasi: document.querySelector("[name='lokasi']").value,
+    ig_vendor: document.querySelector("[name='ig_vendor']").value
+  };
+
+  try {
+
+    alert("lagi kirim data...");
+
+await fetch("https://script.google.com/macros/s/AKfycbwd_fqNT1wWPq8mLzkSuptOGXLIPgLpVKXojhmUR3EH4ef5oLeK8V21whizAim6zhbR/exec", {
+  method: "POST",
+  body: new URLSearchParams(data)
+});
+    alert("Data masuk ke Sheets!");
+
+  } catch(error) {
+
+    alert("Error: " + error);
+
+    console.log(error);
+
+  }
+});
+</script>
+</body>
+</html>
